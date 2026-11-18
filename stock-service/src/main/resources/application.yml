@@ -1,0 +1,20 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: stock-service
+  datasource:
+    url: jdbc:h2:mem:stock;DB_CLOSE_DELAY=-1
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP:localhost:9092}
+    consumer:
+      group-id: stock-service
+      auto-offset-reset: earliest
+  mvc:
+    problemdetails:
+      enabled: true
