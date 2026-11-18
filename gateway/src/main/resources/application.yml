@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: orders
+          uri: ${ORDER_SERVICE_URL:http://localhost:8081}
+          predicates:
+            - Path=/api/orders/**
+        - id: stock
+          uri: ${STOCK_SERVICE_URL:http://localhost:8082}
+          predicates:
+            - Path=/api/stock/**
